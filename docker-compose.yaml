@@ -1,0 +1,28 @@
+services:
+  suwayomi:
+    image: ghcr.io/suwayomi/suwayomi-server:latest
+    container_name: suwayomi
+    restart: unless-stopped
+    user: "1000:1000"
+    ports:
+      - "4567:4567"
+    volumes:
+      - ./:/home/suwayomi/.local/share/Suwayomi-Server
+    environment:
+      - TZ=Asia/Singapore
+      - LANG=en_US.UTF-8
+      - LC_ALL=en_US.UTF-8
+      - FLARESOLVERR_ENABLED=true
+      - FLARESOLVERR_URL=http://flaresolverr:8191
+      - FLARESOLVERR_TIMEOUT=60
+    depends_on:
+      - flaresolverr
+
+  flaresolverr:
+    image: ghcr.io/flaresolverr/flaresolverr:latest
+    container_name: flaresolverr
+    restart: unless-stopped
+    environment:
+      - LOG_LEVEL=info
+      - TZ=Asia/Singapore
+      - BROWSER_TIMEOUT=120000
