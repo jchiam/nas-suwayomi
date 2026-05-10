@@ -53,14 +53,19 @@ Internet → manga.in.<my-domain> → Tailscale (access control) → Caddy → l
 
 ## Persistent Data
 
-The current directory is bind-mounted into the container as Suwayomi's data directory:
+A `data/` subdirectory is bind-mounted into the container as Suwayomi's data directory:
 
 ```yaml
 volumes:
-  - ./:/home/suwayomi/.local/share/Suwayomi-Server
+  - ./data:/home/suwayomi/.local/share/Tachidesk
 ```
 
-This stores the library, downloads, and configuration alongside the compose file.
+This stores the library, downloads, database, and configuration. Create it before first run and ensure it is owned by UID 1000:
+
+```bash
+mkdir -p data
+chown -R 1000:1000 data
+```
 
 ## Linting
 
