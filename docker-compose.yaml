@@ -7,7 +7,7 @@ services:
     ports:
       - "4567:4567"
     volumes:
-      - ./:/home/suwayomi/.local/share/Suwayomi-Server
+      - ./data:/home/suwayomi/.local/share/Tachidesk
     environment:
       - TZ=Asia/Singapore
       - LANG=en_US.UTF-8
