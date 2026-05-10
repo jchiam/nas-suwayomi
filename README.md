@@ -41,6 +41,16 @@ Internet → manga.in.<my-domain> → Tailscale (access control) → Caddy → l
 
 3. Access the UI at `http://localhost:4567` (or via the Caddy-proxied domain).
 
+## Configuration
+
+| Variable | Value | Purpose |
+|---|---|---|
+| `BACKUP_INTERVAL` | `1` | Auto-backup every 1 day |
+| `UPDATE_INTERVAL` | `12` | Auto library refresh every 12 hours |
+| `FLARESOLVERR_ENABLED` | `true` | Route requests through FlareSolverr |
+| `FLARESOLVERR_URL` | `http://flaresolverr:8191` | FlareSolverr endpoint |
+| `FLARESOLVERR_TIMEOUT` | `60` | FlareSolverr timeout in seconds |
+
 ## Persistent Data
 
 The current directory is bind-mounted into the container as Suwayomi's data directory:
@@ -54,7 +64,7 @@ This stores the library, downloads, and configuration alongside the compose file
 
 ## Linting
 
-Lint checks run automatically on every push and PR to `main` via GitHub Actions ([.github/workflows/lint.yaml](.github/workflows/lint.yaml)).
+Lint checks run automatically on every push and PR to `master` via GitHub Actions ([.github/workflows/lint.yaml](.github/workflows/lint.yaml)).
 
 | Tool | Target |
 |---|---|
